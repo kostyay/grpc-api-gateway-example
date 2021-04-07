@@ -1,0 +1,31 @@
+version: "3.9"
+services:
+
+  api:
+    build:
+      dockerfile: Dockerfile
+      context: .
+      args:
+        - image_name=apigw
+    image: kostyay/example-api-service
+    ports:
+      - "9090:9090"
+    links:
+      - users
+      - orders
+
+  users:
+    build:
+      dockerfile: Dockerfile
+      context: .
+      args:
+        - image_name=users
+    image: kostyay/example-users-service
+
+  orders:
+    build:
+      dockerfile: Dockerfile
+      context: .
+      args:
+        - image_name=orders
+    image: kostyay/example-orders-service

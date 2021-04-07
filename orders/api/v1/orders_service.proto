@@ -1,0 +1,22 @@
+syntax = "proto3";
+
+package smpl.orders.v1;
+
+option go_package = "github.com/kostyay/grpc-api-gateway-example/orders/api/v1";
+
+message Order {
+  string id = 1;
+  string user_id = 2;
+  string product = 3;
+}
+
+message ListOrdersRequest {
+}
+
+message ListOrdersResponse {
+  repeated Order orders = 1;
+}
+
+service OrdersService {
+  rpc ListOrders(ListOrdersRequest) returns (ListOrdersResponse);
+}

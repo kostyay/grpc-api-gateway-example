@@ -1,0 +1,30 @@
+syntax = "proto3";
+
+package smpl.users.v1;
+
+option go_package = "github.com/kostyay/grpc-api-gateway-example/users/api/v1";
+
+message CreateUserRequest {
+  string email = 1;
+}
+
+message CreateUserResponse {
+  User user = 1;
+}
+
+message User {
+  string id = 1;
+  string email = 2;
+}
+
+message ListUsersRequest {
+}
+
+message ListUsersResponse {
+  repeated User users = 1;
+}
+
+service UsersService {
+  rpc CreateUser(CreateUserRequest) returns (CreateUserResponse);
+  rpc ListUsers(ListUsersRequest) returns (ListUsersResponse);
+}
